@@ -1,0 +1,31 @@
+type PoolMetadata = {
+  pool_id: string;
+  hex: string;
+  url: string | null;
+  hash: string | null;
+  ticker: string | null;
+  name: string | null;
+  description: string | null;
+  homepage: string | null;
+};
+type SpecificStakePool = {
+  pool_id: string;
+  hex: string;
+  vrf_key: string;
+  blocks_minted: number;
+  blocks_epoch: number;
+  live_stake: string;
+  live_size: number;
+  live_saturation: number;
+  live_delegators: number;
+  active_stake: string;
+  active_size: number;
+  declared_pledge: string;
+  live_pledge: string;
+  margin_cost: number;
+  fixed_cost: string;
+  reward_account: string;
+  owners: Array<string>;
+  registration: Array<string>;
+  retirement: Array<string>;
+};
