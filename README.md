@@ -2,23 +2,16 @@
 
 - ステークプールの情報をまとめたシンプルなシングルページを簡単に公開できるサービスです。
 
+## Getting Started
+
 - ドキュメント
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F449sabu%2Fpoolmanager-spb.git&env=BLOCKFROST_API,USER_ID,USER_URL&envDescription=%E8%A8%AD%E5%AE%9A%E5%8F%AF%E8%83%BD%E3%81%AA%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0%E3%81%AE%E4%B8%80%E8%A6%A7%E3%81%AF%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%82%92%E3%81%94%E8%A6%A7%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82&envLink=https%3A%2F%2Fctool-docs.vercel.app%2Fdocs%2Fsimplepage-builder)
 
+## LICENSE
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
