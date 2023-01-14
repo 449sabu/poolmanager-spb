@@ -4,6 +4,6 @@
 
 ## Getting Started
 
-- ドキュメント
+- [Documentation in japanese](https://ctool-docs.vercel.app/docs/simplepage-builder)  
 
 ## LICENSE
