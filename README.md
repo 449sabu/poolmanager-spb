@@ -6,6 +6,8 @@
 - Next.js
 - Chakra ui
 - SWR
+- Blockfrost SDK
+- Mesh SDK
 
 
 ## Getting Started
