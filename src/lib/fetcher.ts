@@ -5,10 +5,12 @@
  * @returns {Promise<BitflyerTickerResponseType>} API レスポンス
  */
 
-export const fetcher = async (url: string, key: string) => {
+export const fetcher = async (url: string, key?: string) => {
   const response = await fetch(url, {
-    method: `POST`,
-    body: key,
+    method: `GET`,
+    headers: {
+      api_key: key || '',
+    },
   });
   return await response.json();
 };

@@ -9,40 +9,39 @@ import type { ExMetadata } from 'types/exMetadata';
 import Hero from '../components/Hero';
 import Stats from '../components/Stats';
 import { useMetadataSWR } from '../store/swr/metadata';
+import { useSpecificStakePoolSWR } from '../store/swr/specific';
 
 type Props = {
   content: Content;
   exMetadata: ExMetadata;
-  fallbackData: PoolMetadata;
+  metadata: PoolMetadata;
   stat: SpecificStakePool;
 };
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   content,
   exMetadata,
-  fallbackData,
+  metadata,
   stat,
 }: Props) => {
-  const { mutate } = useMetadataSWR(fallbackData);
+  const { mutate: mutateMetadata } = useMetadataSWR(metadata);
+  const { mutate: mutateSpecificStakePool } = useSpecificStakePoolSWR(stat);
 
   return (
     <>
       <Head>
-        <title>{`${fallbackData.ticker}`}</title>
+        <title>{`${metadata.ticker}`}</title>
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${fallbackData.ticker}`} />
-        <meta
-          property="og:description"
-          content={`${fallbackData.description}`}
-        />
+        <meta property="og:title" content={`${metadata.ticker}`} />
+        <meta property="og:description" content={`${metadata.description}`} />
         {/* <meta property="og:image" content={blog.image.url} /> */}
         {/* <meta name="twitter:site" content="@CIEL_Stake_Pool" /> */}
         {/* <meta name="twitter:card" content="summary_large_image" /> */}
       </Head>
-      <Hero metadata={fallbackData} exMetadata={exMetadata} content={content} />
+      <Hero metadata={metadata} exMetadata={exMetadata} content={content} />
       <Stats stat={stat} />
       <Feature content={content} />
-      <Footer metadata={fallbackData} />
+      <Footer metadata={metadata} />
     </>
   );
 };
@@ -56,13 +55,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async () => {
   );
   const data: Content = a.user;
 
-  const exMetadata: ExMetadata = await fetch(`${data.exMetadata}`, {
-    method: `GET`,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
-    });
+  const exMetadata: ExMetadata = await fetcher(`${data.exMetadata}`);
 
   const Blockfrost = new BlockFrostAPI({
     projectId: process.env.BLOCKFROST_API || '',
@@ -74,7 +67,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async () => {
     props: {
       content: data,
       exMetadata: exMetadata,
-      fallbackData: metadata,
+      metadata: metadata,
       stat: stat,
     },
   };

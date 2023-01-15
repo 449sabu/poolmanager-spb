@@ -8,6 +8,6 @@ export default async function handler(
   const API = new BlockFrostAPI({
     projectId: process.env.BLOCKFROST_API || '',
   });
-  const Data = await API.poolMetadata(req.body);
+  const Data = await API.poolMetadata(req.headers.api_key as string);
   res.status(200).json(Data);
 }
