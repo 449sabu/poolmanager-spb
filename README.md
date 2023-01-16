@@ -9,11 +9,15 @@
 - Blockfrost SDK
 - Mesh SDK
 
-
 ## Getting Started
 
-- [Documentation in japanese](https://ctool-docs.vercel.app/docs/simplepage-builder)  
+### 使い方
+ 1. このリポジトリをフォークする。
+ 2. PoolManagerを使用するか自分でエンドポイントを設定し、公開する情報を作成する。
+ 3. 
+
+- [All documentation in japanese](https://ctool-docs.vercel.app/docs/simple-pages-builder)  
 - [Custom contents schema]
-- [Environment variables]
+- [Environment variables](https://ctool-docs.vercel.app/docs/simple-pages-builder#%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0)  
 
 ## LICENSE
