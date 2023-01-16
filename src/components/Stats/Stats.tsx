@@ -11,7 +11,7 @@ import {
 import { ReactNode } from 'react';
 import { FiBox, FiUsers, FiLock, FiPlus, FiPercent } from 'react-icons/fi';
 import { GoGraph } from 'react-icons/go';
-import { calculateADA } from '../lib/calculateADA';
+import { calculateADA } from '../../lib/calculateADA';
 
 type Props = {
   stat: SpecificStakePool;

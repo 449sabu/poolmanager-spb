@@ -1,4 +1,3 @@
-import { Icon } from '@chakra-ui/react';
 import { FiGithub } from 'react-icons/fi';
 import {
   HiShieldCheck,
@@ -8,92 +7,28 @@ import {
   HiChatAlt,
 } from 'react-icons/hi';
 
-export const IconFilter = (icon: string, theme: string) => {
+export const iconFilter = (icon: string) => {
   if (icon === 'HiOutlineTranslate') {
-    return (
-      <Icon
-        as={HiOutlineTranslate}
-        boxSize={14}
-        bg={`${theme}.400`}
-        p={3}
-        borderRadius="md"
-      />
-    );
+    return HiOutlineTranslate;
   }
   if (icon === 'HiShieldCheck') {
-    return (
-      <Icon
-        as={HiShieldCheck}
-        boxSize={14}
-        bg={`${theme}.400`}
-        p={3}
-        borderRadius="md"
-      />
-    );
+    return HiShieldCheck;
   }
   if (icon === 'FiGithub') {
-    return (
-      <Icon
-        as={FiGithub}
-        boxSize={14}
-        bg={`${theme}.400`}
-        p={3}
-        borderRadius="md"
-      />
-    );
+    return FiGithub;
   }
   if (icon === 'HiChatAlt') {
-    return (
-      <Icon
-        as={HiChatAlt}
-        boxSize={14}
-        bg={`${theme}.400`}
-        p={3}
-        borderRadius="md"
-      />
-    );
+    return HiChatAlt;
   }
   if (icon === 'HiOutlineServer') {
-    return (
-      <Icon
-        as={HiOutlineServer}
-        boxSize={14}
-        bg={`${theme}.400`}
-        p={3}
-        borderRadius="md"
-      />
-    );
+    return HiOutlineServer;
   }
   if (icon === 'HiShieldCheck') {
-    return (
-      <Icon
-        as={HiShieldCheck}
-        boxSize={14}
-        bg={`${theme}.400`}
-        p={3}
-        borderRadius="md"
-      />
-    );
+    return HiShieldCheck;
   }
-  if (icon === 'HiOutlineTranslate') {
-    return (
-      <Icon
-        as={HiOutlineTranslate}
-        boxSize={14}
-        bg={`${theme}.400`}
-        p={3}
-        borderRadius="md"
-      />
-    );
+  if (icon === 'HiCheck') {
+    return HiCheck;
   } else {
-    return (
-      <Icon
-        as={HiCheck}
-        boxSize={14}
-        bg={`${theme}.400`}
-        p={3}
-        borderRadius="md"
-      />
-    );
+    return HiOutlineTranslate;
   }
 };

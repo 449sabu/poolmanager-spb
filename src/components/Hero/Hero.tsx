@@ -21,11 +21,12 @@ import {
   chakra,
   VisuallyHidden,
 } from '@chakra-ui/react';
-import { BrowserWallet, BlockfrostProvider } from '@meshsdk/core';
+import { KoiosProvider } from '@meshsdk/core';
 import Head from 'next/head';
 import { ReactNode } from 'react';
 import { FaTwitter, FaYoutube, FaDiscord } from 'react-icons/fa';
 import { ExMetadata } from 'types/exMetadata';
+import StakeButton from '../StakeButton';
 
 type Props = {
   metadata: PoolMetadata;
@@ -39,15 +40,10 @@ export default function CallToActionWithAnnotation({
   content,
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const blockchainProvider = new KoiosProvider('api');
 
   return (
     <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
       <Container maxW={'3xl'}>
         <Stack
           as={Box}
@@ -73,17 +69,13 @@ export default function CallToActionWithAnnotation({
             alignSelf={'center'}
             position={'relative'}
           >
-            <Button
-              colorScheme={`${content.theme}`}
-              bg={`${content.theme}.400`}
-              rounded={'full'}
-              px={6}
-              _hover={{
-                bg: `${content.theme}.500`,
-              }}
-            >
-              Start Staking
-            </Button>
+            <StakeButton
+              onCheck={(address: string) =>
+                blockchainProvider.fetchAccountInfo(address)
+              }
+              poolId={content.poolid}
+              content={content}
+            />
             <Button
               variant={'link'}
               colorScheme={'blue'}

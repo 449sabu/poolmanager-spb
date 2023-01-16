@@ -2,12 +2,12 @@ import { BlockFrostAPI } from '@blockfrost/blockfrost-js';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import Head from 'next/head';
-import Feature from '../components/Feature';
 import { fetcher } from 'lib/fetcher';
-import Footer from '../components/Footer';
+import Feature from '../components/Feature/Feature';
 import type { ExMetadata } from 'types/exMetadata';
-import Hero from '../components/Hero';
-import Stats from '../components/Stats';
+import Footer from '../components/Footer/Footer';
+import Hero from '../components/Hero/Hero';
+import Stats from '../components/Stats/Stats';
 import { useMetadataSWR } from '../store/swr/metadata';
 import { useSpecificStakePoolSWR } from '../store/swr/specific';
 
@@ -30,12 +30,12 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   return (
     <>
       <Head>
-        <title>{`${metadata.ticker}`}</title>
+        <title>{`${metadata.name}`}</title>
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${metadata.ticker}`} />
+        <meta property="og:title" content={`${metadata.name}`} />
         <meta property="og:description" content={`${metadata.description}`} />
         {/* <meta property="og:image" content={blog.image.url} /> */}
-        {/* <meta name="twitter:site" content="@CIEL_Stake_Pool" /> */}
+        <meta name="twitter:site" content={`${metadata.name}`} />
         {/* <meta name="twitter:card" content="summary_large_image" /> */}
       </Head>
       <Hero metadata={metadata} exMetadata={exMetadata} content={content} />

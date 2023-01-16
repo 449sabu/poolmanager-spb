@@ -7,8 +7,9 @@ import {
   Stack,
   HStack,
   VStack,
+  Icon,
 } from '@chakra-ui/react';
-import { IconFilter } from '../lib/iconFilter';
+import { iconFilter } from '../../lib/iconFilter';
 
 type Props = {
   content: Content;
@@ -34,7 +35,14 @@ export default function GridListWithHeading({ content }: Props) {
           {content.description.map((feature, i) => (
             <HStack key={i} align={'top'}>
               <VStack m="auto" mt={1}>
-                {IconFilter(feature.icon, content.theme)}
+                {/* {IconFilter(feature.icon, content.theme)} */}
+                <Icon
+                  as={iconFilter(feature.icon)}
+                  boxSize={14}
+                  bg={`${content.theme}.400`}
+                  p={3}
+                  borderRadius="md"
+                />
                 <Text fontWeight={600} fontSize={{ base: '2xl', lg: '3xl' }}>
                   {feature.title}
                 </Text>

@@ -34,7 +34,7 @@ export default function WithSubnavigation() {
   const { data } = useSWR('PoolMetadata');
 
   return (
-    <Box position={'fixed'} w={'full'}>
+    <Box position={'fixed'} w={'full'} zIndex={100}>
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
