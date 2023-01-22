@@ -5,7 +5,6 @@ import {
   Text,
   Button,
   Stack,
-  Icon,
   useColorModeValue,
   createIcon,
   Modal,
@@ -28,7 +27,7 @@ import StakeButton from 'components/StakeButton';
 import { ExMetadata } from 'types/exMetadata';
 
 type Props = {
-  metadata: PoolMetadata;
+  metadata: PoolInfo;
   exMetadata: ExMetadata;
   content: Content;
 };
@@ -57,10 +56,10 @@ export default function CallToActionWithAnnotation({
           >
             Cardano Staking Pool <br />
             <Text as={'span'} color={`${content.theme}.400`}>
-              {metadata.name}
+              {metadata.meta_json.name}
             </Text>
           </Heading>
-          <Text color={'gray.500'}>{metadata.description}</Text>
+          <Text color={'gray.500'}>{metadata.meta_json.description}</Text>
           <Stack
             direction={'column'}
             spacing={3}
@@ -72,7 +71,7 @@ export default function CallToActionWithAnnotation({
               onCheck={(address: string) =>
                 blockchainProvider.fetchAccountInfo(address)
               }
-              poolId={content.poolid}
+              poolId={metadata.pool_id_bech32}
               content={content}
             />
             <Button
@@ -83,7 +82,7 @@ export default function CallToActionWithAnnotation({
             >
               Learn more
             </Button>
-            <Box>
+            {/* <Box>
               <Icon
                 as={Arrow}
                 color={useColorModeValue('gray.800', 'gray.300')}
@@ -102,7 +101,7 @@ export default function CallToActionWithAnnotation({
               >
                 Support & Delegation
               </Text>
-            </Box>
+            </Box> */}
           </Stack>
         </Stack>
       </Container>
@@ -116,9 +115,9 @@ export default function CallToActionWithAnnotation({
               <HStack spacing={6}>
                 <AvatarImage image_url={exMetadata.info.url_png_icon_64x64} />
                 <Stack maxW={'22rem'} mx={2}>
-                  <ModalHeader>{metadata.name}</ModalHeader>
-                  <Text>Ticker : {metadata.ticker}</Text>
-                  <Text>Pool ID : {metadata.pool_id}</Text>
+                  <ModalHeader>{metadata.meta_json.name}</ModalHeader>
+                  <Text>Ticker : {metadata.meta_json.ticker}</Text>
+                  <Text>Pool ID : {metadata.pool_id_bech32}</Text>
                 </Stack>
               </HStack>
             </ModalBody>

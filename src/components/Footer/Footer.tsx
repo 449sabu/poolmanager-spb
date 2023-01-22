@@ -8,7 +8,8 @@ import {
   VisuallyHidden,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
-import { FaGithub, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaTwitter, FaTelegram } from 'react-icons/fa';
+import { ExMetadata } from 'types/exMetadata';
 
 const SocialButton = ({
   children,
@@ -43,10 +44,11 @@ const SocialButton = ({
 };
 
 type Props = {
-  metadata: PoolMetadata;
+  koios: PoolInfo;
+  exMetadata: ExMetadata;
 };
 
-export default function Footer({ metadata }: Props) {
+export default function Footer({ koios, exMetadata }: Props) {
   return (
     <Box
       bg={useColorModeValue('gray.50', 'gray.900')}
@@ -66,20 +68,44 @@ export default function Footer({ metadata }: Props) {
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}
         >
-          <Text>{`© ${new Date().getFullYear()} ${metadata.name}`}</Text>
+          <Text>{`© ${new Date().getFullYear()} ${koios.meta_json.name}`}</Text>
           <Stack direction={'row'} spacing={6}>
-            <SocialButton
-              label={'Twitter'}
-              href={'https://twitter.com/CIEL_Stake_Pool'}
-            >
-              <FaTwitter />
-            </SocialButton>
-            <SocialButton
-              label={'FaGithub'}
-              href={'https://github.com/449sabu'}
-            >
-              <FaGithub />
-            </SocialButton>
+            {exMetadata.info.social?.twitter_handle === undefined ? (
+              ''
+            ) : exMetadata.info.social?.twitter_handle === '' ? (
+              ''
+            ) : (
+              <SocialButton
+                label={'Twitter'}
+                href={`https://twitter.com/${exMetadata.info.social?.twitter_handle}`}
+              >
+                <FaTwitter />
+              </SocialButton>
+            )}
+            {exMetadata.info.social?.telegram_handle === undefined ? (
+              ''
+            ) : exMetadata.info.social?.telegram_handle === '' ? (
+              ''
+            ) : (
+              <SocialButton
+                label={'Telegram'}
+                href={`https://github.com/${exMetadata.info.social.telegram_handle}`}
+              >
+                <FaTelegram />
+              </SocialButton>
+            )}
+            {exMetadata.info.social?.github_handle === undefined ? (
+              ''
+            ) : exMetadata.info.social?.github_handle === '' ? (
+              ''
+            ) : (
+              <SocialButton
+                label={'FaGithub'}
+                href={`https://github.com/${exMetadata.info.social.github_handle}`}
+              >
+                <FaGithub />
+              </SocialButton>
+            )}
           </Stack>
         </Container>
       </Box>

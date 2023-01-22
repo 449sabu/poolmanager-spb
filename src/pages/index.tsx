@@ -1,47 +1,52 @@
-import { BlockFrostAPI } from '@blockfrost/blockfrost-js';
+// import Feature from 'components/Feature/Feature';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import Footer from 'components/Footer/Footer';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+import Hero from 'components/Hero/Hero';
 import Head from 'next/head';
+import Nav from 'components/Navigation/Navigation';
+import Stats from 'components/Stats/Stats';
+import { DefaultData } from 'lib/defaultData';
 import { fetcher } from 'lib/fetcher';
-import Feature from '../components/Feature/Feature';
+import { PoolInformation, useMetadata } from 'store/swr/koios/PoolInformation';
 import type { ExMetadata } from 'types/exMetadata';
-import Footer from '../components/Footer/Footer';
-import Hero from '../components/Hero/Hero';
-import Stats from '../components/Stats/Stats';
-import { useMetadataSWR } from '../store/swr/blockfrost/metadata';
-import { useSpecificStakePoolSWR } from '../store/swr/blockfrost/specific';
 
 type Props = {
   content: Content;
   exMetadata: ExMetadata;
-  metadata: PoolMetadata;
-  stat: SpecificStakePool;
+  poolInfo: Array<PoolInfo>;
 };
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   content,
   exMetadata,
-  metadata,
-  stat,
+  poolInfo,
 }: Props) => {
-  const { mutate: mutateMetadata } = useMetadataSWR(metadata);
-  const { mutate: mutateSpecificStakePool } = useSpecificStakePoolSWR(stat);
+  const { mutate: mutatePoolInfo } = useMetadata(poolInfo);
 
   return (
     <>
       <Head>
-        <title>{`${metadata.name}`}</title>
+        <title>{`${poolInfo[0].meta_json.name}`}</title>
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${metadata.name}`} />
-        <meta property="og:description" content={`${metadata.description}`} />
+        <meta property="og:title" content={`${poolInfo[0].meta_json.name}`} />
+        <meta
+          property="og:description"
+          content={`${poolInfo[0].meta_json.description}`}
+        />
         {/* <meta property="og:image" content={blog.image.url} /> */}
-        <meta name="twitter:site" content={`${metadata.name}`} />
+        <meta name="twitter:site" content={`${poolInfo[0].meta_json.name}`} />
         {/* <meta name="twitter:card" content="summary_large_image" /> */}
       </Head>
-      <Hero metadata={metadata} exMetadata={exMetadata} content={content} />
-      <Stats stat={stat} />
-      <Feature content={content} />
-      <Footer metadata={metadata} />
+      <Nav />
+      <Hero metadata={poolInfo[0]} exMetadata={exMetadata} content={content} />
+      <Stats stat={poolInfo[0]} />
+      {/* {process.env.SPB_TYPE === 'PoolManager' ? (
+        <Feature content={content} />
+      ) : (
+        ''
+      )} */}
+      <Footer koios={poolInfo[0]} exMetadata={exMetadata} />
     </>
   );
 };
@@ -49,26 +54,34 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default Home;
 
 export const getStaticProps: GetStaticProps<Props, Params> = async () => {
-  const a = await fetcher(
-    'https://poolmanager.vercel.app/api/user',
-    process.env.USER_ID || '',
+  const PoolInfo = await PoolInformation(
+    'https://api.koios.rest/api/v0/pool_info',
+    process.env.POOL_ID || '',
   );
-  const data: Content = a.user;
+  const exMetadata: ExMetadata = await fetcher(process.env.EX_METADATA || '');
 
-  const exMetadata: ExMetadata = await fetcher(`${data.exMetadata}`);
+  if (process.env.SPB_TYPE === 'PoolManager') {
+    const a = await fetcher(
+      'https://poolmanager.vercel.app/api/user',
+      process.env.USER_ID || '',
+    );
+    const data: Content = a.user;
 
-  const Blockfrost = new BlockFrostAPI({
-    projectId: process.env.BLOCKFROST_API || '',
-  });
-  const metadata = await Blockfrost.poolMetadata(data.poolid);
-  const stat = await Blockfrost.poolsById(data.poolid);
-
-  return {
-    props: {
-      content: data,
-      exMetadata: exMetadata,
-      metadata: metadata,
-      stat: stat,
-    },
-  };
+    return {
+      props: {
+        content: data,
+        exMetadata: exMetadata,
+        poolInfo: PoolInfo,
+      },
+    };
+  } else {
+    const data = DefaultData;
+    return {
+      props: {
+        content: data,
+        exMetadata: exMetadata,
+        poolInfo: PoolInfo,
+      },
+    };
+  }
 };

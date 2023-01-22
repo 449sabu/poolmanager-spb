@@ -14,7 +14,7 @@ import { GoGraph } from 'react-icons/go';
 import { calculateADA } from '../../lib/calculateADA';
 
 type Props = {
-  stat: SpecificStakePool;
+  stat: PoolInfo;
 };
 
 interface StatsCardProps {
@@ -73,12 +73,12 @@ export default function BasicStatistics({ stat }: Props) {
         />
         <StatsCard
           title={'Margin Cost'}
-          stat={`${stat.margin_cost} %`}
+          stat={`${stat.margin} %`}
           icon={<FiPercent size={'3em'} />}
         />
         <StatsCard
           title={'Pledge'}
-          stat={`${calculateADA(stat.declared_pledge)} ADA`}
+          stat={`${calculateADA(stat.pledge || '')} ADA`}
           icon={<FiLock size={'3em'} />}
         />
       </SimpleGrid>
@@ -90,12 +90,12 @@ export default function BasicStatistics({ stat }: Props) {
         />
         <StatsCard
           title={'Active Stake'}
-          stat={`${calculateADA(stat.active_stake)} ADA`}
+          stat={`${calculateADA(stat.active_stake || '')} ADA`}
           icon={<GoGraph size={'3em'} />}
         />
         <StatsCard
           title={'Blocks'}
-          stat={`${stat.blocks_minted} Bloks`}
+          stat={`${stat.block_count || 0} Blocks`}
           icon={<FiBox size={'3em'} />}
         />
       </SimpleGrid>
