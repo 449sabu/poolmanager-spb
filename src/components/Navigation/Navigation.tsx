@@ -32,7 +32,7 @@ export default function WithSubnavigation() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onToggle } = useDisclosure();
   // const { data } = useSWR('PoolMetadata');
-  const { data: PoolInfo } = useSWR<Array<Pool>>('PoolInformation');
+  const { data: PoolInfo } = useSWR<Array<PoolInfo>>('PoolInformation');
 
   return (
     <Box position={'fixed'} w={'full'} zIndex={100}>

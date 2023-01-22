@@ -24,8 +24,8 @@ import {
 import { KoiosProvider } from '@meshsdk/core';
 import { ReactNode } from 'react';
 import { FaTwitter, FaYoutube, FaDiscord } from 'react-icons/fa';
+import StakeButton from 'components/StakeButton';
 import { ExMetadata } from 'types/exMetadata';
-import StakeButton from '../StakeButton';
 
 type Props = {
   metadata: PoolMetadata;
