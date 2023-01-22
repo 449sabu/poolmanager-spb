@@ -1,10 +1,11 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import Footer2 from 'components/Footer/Footer2';
-import Head from 'next/head';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import Hero2 from 'components/Hero/Hero2';
-import Nav from 'components/Navigation/Navigation';
+import Head from 'next/head';
+// import Nav from 'components/Navigation/Navigation';
 import Stats2 from 'components/Stats/Stats2';
+import { DefaultData } from 'lib/defaultData';
 import { fetcher } from 'lib/fetcher';
 import { PoolInformation, useMetadata } from 'store/swr/koios/PoolInformation';
 import type { ExMetadata } from 'types/exMetadata';
@@ -36,7 +37,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         <meta name="twitter:site" content={`${poolInfo[0].meta_json.name}`} />
         {/* <meta name="twitter:card" content="summary_large_image" /> */}
       </Head>
-      {process.env.HOST === 'github' ? <Nav /> : ''}
+      {/* {process.env.HOST === 'github' ? <Nav /> : ''} */}
       <Hero2 metadata={poolInfo[0]} exMetadata={exMetadata} content={content} />
       <Stats2 stat={poolInfo[0]} />
       {/* <Feature content={content} /> */}
@@ -54,17 +55,28 @@ export const getStaticProps: GetStaticProps<Props, Params> = async () => {
   );
   const exMetadata: ExMetadata = await fetcher(process.env.EX_METADATA || '');
 
-  const a = await fetcher(
-    'https://poolmanager.vercel.app/api/user',
-    process.env.USER_ID || '',
-  );
-  const data: Content = a.user;
+  if (process.env.SPB_TYPE === 'PoolManager') {
+    const a = await fetcher(
+      'https://poolmanager.vercel.app/api/user',
+      process.env.USER_ID || '',
+    );
+    const data: Content = a.user;
 
-  return {
-    props: {
-      content: data,
-      exMetadata: exMetadata,
-      poolInfo: PoolInfo,
-    },
-  };
+    return {
+      props: {
+        content: data,
+        exMetadata: exMetadata,
+        poolInfo: PoolInfo,
+      },
+    };
+  } else {
+    const data = DefaultData;
+    return {
+      props: {
+        content: data,
+        exMetadata: exMetadata,
+        poolInfo: PoolInfo,
+      },
+    };
+  }
 };

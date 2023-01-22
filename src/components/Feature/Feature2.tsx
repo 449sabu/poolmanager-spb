@@ -25,7 +25,7 @@ const Features = ({ content }: Props) => {
         mt={12}
         mb={4}
       >
-        {content.description.map((feature, i) => (
+        {content.description?.map((feature, i) => (
           <Box key={i} textAlign="center">
             <Icon
               as={iconFilter(feature.icon)}

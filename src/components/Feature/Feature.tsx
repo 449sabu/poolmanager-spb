@@ -32,7 +32,7 @@ export default function GridListWithHeading({ content }: Props) {
       <Container maxW={'6xl'} mt={10}>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
           {/* <HStack> */}
-          {content.description.map((feature, i) => (
+          {content.description?.map((feature, i) => (
             <HStack key={i} align={'top'}>
               <VStack m="auto" mt={1}>
                 {/* {IconFilter(feature.icon, content.theme)} */}

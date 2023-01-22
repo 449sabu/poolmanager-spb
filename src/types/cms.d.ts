@@ -7,11 +7,12 @@ type Content = {
   stakekey: string;
   poolid: string;
   exMetadata: string;
-  sign: string;
-  createdWebsite: boolean;
-  url: string;
-  theme: string;
-  description: Array<Descriptions>;
+  sign: {
+    key: string;
+    signature: string;
+  };
+  theme?: string;
+  description?: Array<Descriptions>;
 };
 
 type Descriptions = {
