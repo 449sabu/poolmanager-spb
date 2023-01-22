@@ -3,7 +3,7 @@ import { fetcher } from 'lib/fetcher';
 
 export const useMetadataSWR = (
   fallbackData: PoolMetadata,
-): SWRResponse<PoolMetadata, any> => {
+): SWRResponse<PoolMetadata> => {
   return useSWR(
     'PoolMetadata',
     () => fetcher('/api/pool/metadata', fallbackData.pool_id),

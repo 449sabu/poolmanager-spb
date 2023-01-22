@@ -31,7 +31,8 @@ import useSWR from 'swr';
 export default function WithSubnavigation() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onToggle } = useDisclosure();
-  const { data } = useSWR('PoolMetadata');
+  // const { data } = useSWR('PoolMetadata');
+  const { data: PoolInfo } = useSWR<Array<Pool>>('PoolInformation');
 
   return (
     <Box position={'fixed'} w={'full'} zIndex={100}>
@@ -63,14 +64,14 @@ export default function WithSubnavigation() {
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Text
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}
+            fontWeight={'bold'}
           >
-            {data === undefined ? '' : data.ticker}
+            {PoolInfo === undefined ? '' : PoolInfo[0].meta_json.ticker}
           </Text>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-            {data === undefined ? '' : <DesktopNav />}
+            {PoolInfo === undefined ? '' : <DesktopNav />}
           </Flex>
         </Flex>
 
@@ -84,6 +85,17 @@ export default function WithSubnavigation() {
             {colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
           </Button>
         </Stack>
+        {PoolInfo === undefined ? (
+          ''
+        ) : (
+          <Button
+            onClick={() => {
+              console.log(PoolInfo);
+            }}
+          >
+            Kois
+          </Button>
+        )}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -94,7 +106,7 @@ export default function WithSubnavigation() {
 }
 
 const DesktopNav = () => {
-  const { data } = useSWR('PoolMetadata');
+  const { data: PoolInfo } = useSWR('PoolInformation');
 
   const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('gray.800', 'white');
@@ -107,27 +119,27 @@ const DesktopNav = () => {
         {
           label: 'pooltool.io',
           subLabel: ``,
-          href: `https://pooltool.io/pool/${data.hex}/epochs`,
+          href: `https://pooltool.io/pool/${PoolInfo[0].pool_id_hex}/epochs`,
         },
         {
           label: 'cexplorer.io',
           subLabel: '',
-          href: `https://cexplorer.io/pool/${data.pool_id}`,
+          href: `https://cexplorer.io/pool/${PoolInfo[0].pool_id_bech32}`,
         },
         {
           label: 'pool.pm',
           subLabel: '',
-          href: `https://pool.pm/${data.hex}`,
+          href: `https://pool.pm/${PoolInfo[0].pool_id_hex}`,
         },
         {
           label: 'poolpeek.com',
           subLabel: '',
-          href: `https://poolpeek.com/pool/${data.hex}`,
+          href: `https://poolpeek.com/pool/${PoolInfo[0].pool_id_hex}`,
         },
         {
           label: 'Cardanoscan.io',
           subLabel: '',
-          href: `https://cardanoscan.io/pool/${data.pool_id}`,
+          href: `https://cardanoscan.io/pool/${PoolInfo[0].pool_id_bech32}`,
         },
       ],
     },

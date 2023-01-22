@@ -22,7 +22,6 @@ import {
   VisuallyHidden,
 } from '@chakra-ui/react';
 import { KoiosProvider } from '@meshsdk/core';
-import Head from 'next/head';
 import { ReactNode } from 'react';
 import { FaTwitter, FaYoutube, FaDiscord } from 'react-icons/fa';
 import { ExMetadata } from 'types/exMetadata';
