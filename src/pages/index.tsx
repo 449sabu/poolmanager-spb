@@ -8,8 +8,8 @@ import type { ExMetadata } from 'types/exMetadata';
 import Footer from '../components/Footer/Footer';
 import Hero from '../components/Hero/Hero';
 import Stats from '../components/Stats/Stats';
-import { useMetadataSWR } from '../store/swr/metadata';
-import { useSpecificStakePoolSWR } from '../store/swr/specific';
+import { useMetadataSWR } from '../store/swr/blockfrost/metadata';
+import { useSpecificStakePoolSWR } from '../store/swr/blockfrost/specific';
 
 type Props = {
   content: Content;

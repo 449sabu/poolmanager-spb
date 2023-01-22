@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
       <MeshProvider>
-        <Navigation />
+        {process.env.HOST === 'github' ? '' : <Navigation />}
         <Component {...pageProps} />
       </MeshProvider>
     </ChakraProvider>

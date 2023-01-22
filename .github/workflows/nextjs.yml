@@ -78,6 +78,8 @@ jobs:
           BLOCKFROST_API: ${{ secrets.BLOCKFROST_API }} #blockflost ploject id
           USER_ID: ${{ secrets.USER_ID }} #poolmanager user id
           USER_URL: ${{ secrets.USER_URL }} #endpoint of the contents
+          POOL_ID: ${{ secrets.POOL_ID }} #your pool id
+          EX_METADATA: ${{ secrets.EX_METADATA }} #your extended metadata url
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact

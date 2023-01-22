@@ -8,6 +8,7 @@ export type ExMetadata = {
       telegram_handle?: string;
       youtube_handle?: string;
       discord_handle?: string;
+      github_handle?: string;
     };
     about?: {
       me?: string;
