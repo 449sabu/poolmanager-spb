@@ -22,12 +22,12 @@
 - 個々のステークプールの情報をまとめたシンプルなシングルページを簡単に公開できるサービスです。[(サンプルサイト)](https://www.cielstakepool.com/)
 
 ## 技術構成
-- TypeScript
-- Next.js
-- Chakra ui
-- SWR
-- Blockfrost SDK
-- Mesh SDK
+- [TypeScript](https://www.typescriptlang.org/)  
+- [Next.js](https://nextjs.org/)  
+- [Chakra ui](https://chakra-ui.com/)  
+- [SWR](https://swr.vercel.app/ja)  
+- [Koios API](https://api.koios.rest/#overview--problems-solved-by-koios)  
+- [Mesh SDK](https://meshjs.dev/)  
 
 ## 使い方
  1. このリポジトリをフォークする。
