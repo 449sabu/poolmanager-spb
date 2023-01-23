@@ -1,5 +1,4 @@
 import useSWR, { SWRResponse } from 'swr';
-// import { fetcher } from 'lib/fetcher';
 
 export const PoolInformation = async (url: string, key?: string) => {
   const response = await fetch(url, {

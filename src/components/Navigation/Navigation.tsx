@@ -31,7 +31,6 @@ import useSWR from 'swr';
 export default function WithSubnavigation() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onToggle } = useDisclosure();
-  // const { data } = useSWR('PoolMetadata');
   const { data: PoolInfo } = useSWR<Array<PoolInfo>>('PoolInformation');
 
   return (
@@ -85,21 +84,10 @@ export default function WithSubnavigation() {
             {colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
           </Button>
         </Stack>
-        {PoolInfo === undefined ? (
-          ''
-        ) : (
-          <Button
-            onClick={() => {
-              console.log(PoolInfo);
-            }}
-          >
-            Kois
-          </Button>
-        )}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        {PoolInfo === undefined ? '' : <MobileNav />}
       </Collapse>
     </Box>
   );
@@ -265,12 +253,50 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 };
 
 const MobileNav = () => {
+  const { data: PoolInfo } = useSWR('PoolInformation');
+
+  const NAV_ITEMS: Array<NavItem> = [
+    {
+      label: 'Explorer',
+      children: [
+        {
+          label: 'pooltool.io',
+          subLabel: ``,
+          href: `https://pooltool.io/pool/${PoolInfo[0].pool_id_hex}/epochs`,
+        },
+        {
+          label: 'cexplorer.io',
+          subLabel: '',
+          href: `https://cexplorer.io/pool/${PoolInfo[0].pool_id_bech32}`,
+        },
+        {
+          label: 'pool.pm',
+          subLabel: '',
+          href: `https://pool.pm/${PoolInfo[0].pool_id_hex}`,
+        },
+        {
+          label: 'poolpeek.com',
+          subLabel: '',
+          href: `https://poolpeek.com/pool/${PoolInfo[0].pool_id_hex}`,
+        },
+        {
+          label: 'Cardanoscan.io',
+          subLabel: '',
+          href: `https://cardanoscan.io/pool/${PoolInfo[0].pool_id_bech32}`,
+        },
+      ],
+    },
+  ];
+
   return (
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
       p={4}
       display={{ md: 'none' }}
     >
+      {ABOUT_CARDANO.map((navItem) => (
+        <MobileNavItem key={navItem.label} {...navItem} />
+      ))}
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -337,24 +363,6 @@ interface NavItem {
   children?: Array<NavItem>;
   href?: string;
 }
-
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: 'HOME',
-    children: [
-      {
-        label: 'Explore Design Work',
-        subLabel: 'Trending Design to inspire you',
-        href: '/',
-      },
-      {
-        label: 'cexplorer.io',
-        subLabel: '',
-        href: 'https://cexplorer.io/pool/pool13qppafmw3vq5rl4ewmxv7zy84x3rshx9sdczs0zq40cxu0dqkrg',
-      },
-    ],
-  },
-];
 
 const ABOUT_CARDANO: Array<NavItem> = [
   {
