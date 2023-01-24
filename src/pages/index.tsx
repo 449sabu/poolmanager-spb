@@ -2,6 +2,7 @@ import Feature from 'components/Feature/Feature';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Footer from 'components/Footer/Footer';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+import ContactForm from 'components/Form/ContactForm';
 import Hero from 'components/Hero/Hero';
 import Head from 'next/head';
 import Nav from 'components/Navigation/Navigation';
@@ -49,6 +50,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       {process.env.NEXT_PUBLIC_SPB_TYPE === 'PoolManager' ? (
         <Feature content={content} />
       ) : null}
+      <ContactForm />
       <Footer koios={poolInfo[0]} exMetadata={exMetadata} />
     </>
   );
