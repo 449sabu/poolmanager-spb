@@ -1,10 +1,10 @@
 import Feature from 'components/Feature/Feature';
-import Footer from 'components/Footer/Footer';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import Hero from 'components/Hero/Hero';
+import Footer from 'components/Footer/Footer';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
-import Nav from 'components/Navigation/Navigation';
+import Hero from 'components/Hero/Hero';
 import Head from 'next/head';
+import Nav from 'components/Navigation/Navigation';
 import Status from 'components/Status/Status';
 import { DefaultData } from 'lib/defaultData';
 import { fetcher } from 'lib/fetcher';

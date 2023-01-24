@@ -7,7 +7,6 @@ import {
 } from '@chakra-ui/react';
 import { FaGithub, FaTwitter, FaTelegram } from 'react-icons/fa';
 import { SocialButton } from 'components/Items/SocialButton';
-import { ExMetadata } from 'types/exMetadata';
 
 type Props = {
   koios: PoolInfo;
