@@ -9,7 +9,6 @@ import Status from 'components/Status/Status';
 import { DefaultData } from 'lib/defaultData';
 import { fetcher } from 'lib/fetcher';
 import { PoolInformation, useMetadata } from 'store/swr/koios/PoolInformation';
-import type { ExMetadata } from 'types/exMetadata';
 
 type Props = {
   content: Content;
@@ -28,18 +27,24 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <>
       <Head>
         <title>{`${poolInfo[0].meta_json.name}`}</title>
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href={exMetadata.info.url_png_icon_64x64}
+        />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`${poolInfo[0].meta_json.name}`} />
         <meta
           property="og:description"
           content={`${poolInfo[0].meta_json.description}`}
         />
-        {/* <meta property="og:image" content={blog.image.url} /> */}
         <meta name="twitter:site" content={`${poolInfo[0].meta_json.name}`} />
+        {/* <meta property="og:image" content={blog.image.url} /> */}
         {/* <meta name="twitter:card" content="summary_large_image" /> */}
       </Head>
       <Nav />
-      <Hero metadata={poolInfo[0]} exMetadata={exMetadata} content={content} />
+      <Hero metadata={poolInfo[0]} content={content} />
       <Status stat={poolInfo[0]} />
       {process.env.NEXT_PUBLIC_SPB_TYPE === 'PoolManager' ? (
         <Feature content={content} />

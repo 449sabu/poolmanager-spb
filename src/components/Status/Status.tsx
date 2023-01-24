@@ -58,7 +58,7 @@ export default function BasicStatistics({ stat }: Props) {
     {
       title: 'Fixed Cost',
       stat: `${calculateADA(stat.fixed_cost)} ADA`,
-      icon: <FiPlus size={'3em'}/>,
+      icon: <FiPlus size={'3em'} />,
     },
     {
       title: 'Margin Cost',
@@ -88,7 +88,13 @@ export default function BasicStatistics({ stat }: Props) {
   ];
 
   return (
-    <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }} pb={20}>
+    <Box
+      maxW="7xl"
+      mx={{ base: '1rem', md: 'auto' }}
+      pt={5}
+      px={{ base: 2, sm: 12, md: 17 }}
+      pb={20}
+    >
       <chakra.h1
         textAlign={'center'}
         fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}

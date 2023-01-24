@@ -1,4 +1,4 @@
-export type ExMetadata = {
+type ExMetadata = {
   // how-to-implement: 'ardanians/adapools.org/master/example-meta.json',
   info: {
     url_png_icon_64x64: string;
