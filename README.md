@@ -19,7 +19,11 @@
 </div>
 
 ## はじめに
-- 個々のステークプールの情報をまとめたシンプルなシングルページを簡単に公開できるサービスです。[(サンプルサイト)](https://www.cielstakepool.com/)
+- ステークプールの Metadata や 拡張Metadata などの情報をもとに、個々のステークプールの情報をまとめたシンプルなシングルページを簡単に公開できるサービスです。  
+- オンチェーンのデータ取得には Koiso 、Cardano Wallet との対話には Mesh を使用しています。  
+素晴らしいサービスを提供してくれている２つのプロジェクトに感謝いたします。
+
+- [(サンプルサイト)](https://www.cielstakepool.com/)
 
 ## 技術構成
 - [TypeScript](https://www.typescriptlang.org/)  
@@ -31,12 +35,10 @@
 
 ## 使い方
  1. このリポジトリをフォークする。
- 2. PoolManagerを使用するか自分でエンドポイントを設定し、公開する情報を作成する。
- 3. 
+ 2. [設定可能な環境変数](https://ctool-docs.vercel.app/docs/simple-pages-builder#%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0)を参考に、環境変数を設定する。
+ 3. Github Actionsを実行し、Github Pagesでサイトを公開する。
 
-- [All documentation in japanese](https://ctool-docs.vercel.app/docs/simple-pages-builder)  
-- [Custom contents schema]
-- [Environment variables](https://ctool-docs.vercel.app/docs/simple-pages-builder#%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0)  
+- 詳細なドキュメントは[こちら](https://ctool-docs.vercel.app/docs/simple-pages-builder)をご覧ください。
 
 ## LICENSE
 [MIT license](https://github.com/449sabu/poolmanager-spb/blob/main/LICENSE)  
