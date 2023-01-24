@@ -1,11 +1,11 @@
-// import Feature from 'components/Feature/Feature';
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import Feature from 'components/Feature/Feature';
 import Footer from 'components/Footer/Footer';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Hero from 'components/Hero/Hero';
-import Head from 'next/head';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import Nav from 'components/Navigation/Navigation';
-import Stats from 'components/Stats/Stats';
+import Head from 'next/head';
+import Status from 'components/Status/Status';
 import { DefaultData } from 'lib/defaultData';
 import { fetcher } from 'lib/fetcher';
 import { PoolInformation, useMetadata } from 'store/swr/koios/PoolInformation';
@@ -40,12 +40,10 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       </Head>
       <Nav />
       <Hero metadata={poolInfo[0]} exMetadata={exMetadata} content={content} />
-      <Stats stat={poolInfo[0]} />
-      {/* {process.env.SPB_TYPE === 'PoolManager' ? (
+      <Status stat={poolInfo[0]} />
+      {process.env.NEXT_PUBLIC_SPB_TYPE === 'PoolManager' ? (
         <Feature content={content} />
-      ) : (
-        ''
-      )} */}
+      ) : null}
       <Footer koios={poolInfo[0]} exMetadata={exMetadata} />
     </>
   );

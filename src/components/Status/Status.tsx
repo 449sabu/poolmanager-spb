@@ -29,7 +29,6 @@ function StatsCard(props: StatsCardProps) {
     <Stat
       px={{ base: 2, md: 4 }}
       py={'5'}
-      mb={3}
       shadow={'xl'}
       border={'1px solid'}
       borderColor={useColorModeValue('gray.800', 'gray.500')}
@@ -55,6 +54,39 @@ function StatsCard(props: StatsCardProps) {
 }
 
 export default function BasicStatistics({ stat }: Props) {
+  const stats = [
+    {
+      title: 'Fixed Cost',
+      stat: `${calculateADA(stat.fixed_cost)} ADA`,
+      icon: <FiPlus size={'3em'}/>,
+    },
+    {
+      title: 'Margin Cost',
+      stat: `${stat.margin} %`,
+      icon: <FiPercent size={'3em'} />,
+    },
+    {
+      title: 'Pledge',
+      stat: `${calculateADA(stat.pledge || '')} ADA`,
+      icon: <FiLock size={'3em'} />,
+    },
+    {
+      title: 'Delegators',
+      stat: `${stat.live_delegators}`,
+      icon: <FiUsers size={'3em'} />,
+    },
+    {
+      title: 'Active Stake',
+      stat: `${calculateADA(stat.active_stake || '')} ADA`,
+      icon: <GoGraph size={'3em'} />,
+    },
+    {
+      title: 'Blocks',
+      stat: `${stat.block_count || 0} Blocks`,
+      icon: <FiBox size={'3em'} />,
+    },
+  ];
+
   return (
     <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }} pb={20}>
       <chakra.h1
@@ -65,39 +97,10 @@ export default function BasicStatistics({ stat }: Props) {
       >
         Support your Staking Life.
       </chakra.h1>
-      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
-        <StatsCard
-          title={'Fixed Cost'}
-          stat={`${calculateADA(stat.fixed_cost)} ADA`}
-          icon={<FiPlus size={'3em'} />}
-        />
-        <StatsCard
-          title={'Margin Cost'}
-          stat={`${stat.margin} %`}
-          icon={<FiPercent size={'3em'} />}
-        />
-        <StatsCard
-          title={'Pledge'}
-          stat={`${calculateADA(stat.pledge || '')} ADA`}
-          icon={<FiLock size={'3em'} />}
-        />
-      </SimpleGrid>
-      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
-        <StatsCard
-          title={'Delegators'}
-          stat={`${stat.live_delegators}`}
-          icon={<FiUsers size={'3em'} />}
-        />
-        <StatsCard
-          title={'Active Stake'}
-          stat={`${calculateADA(stat.active_stake || '')} ADA`}
-          icon={<GoGraph size={'3em'} />}
-        />
-        <StatsCard
-          title={'Blocks'}
-          stat={`${stat.block_count || 0} Blocks`}
-          icon={<FiBox size={'3em'} />}
-        />
+      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 2, lg: 4 }}>
+        {stats.map((s, i) => (
+          <StatsCard key={i} title={s.title} stat={s.stat} icon={s.icon} />
+        ))}
       </SimpleGrid>
     </Box>
   );
