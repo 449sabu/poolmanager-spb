@@ -1,8 +1,8 @@
 import Feature from 'components/Feature/Feature';
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Footer from 'components/Footer/Footer';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import ContactForm from 'components/Form/ContactForm';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import Hero from 'components/Hero/Hero';
 import Head from 'next/head';
 import Nav from 'components/Navigation/Navigation';
