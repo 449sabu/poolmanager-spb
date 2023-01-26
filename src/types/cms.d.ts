@@ -11,7 +11,7 @@ type Content = {
     key: string;
     signature: string;
   };
-  theme?: string;
+  theme: string;
   description?: Array<Descriptions>;
 };
 

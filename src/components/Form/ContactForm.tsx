@@ -24,6 +24,10 @@ interface ContactForm {
   message: string;
 }
 
+type Props = {
+  content: Content;
+};
+
 const schema = yup.object({
   name: yup.string().required('入力が必須の項目です。'),
   email: yup
@@ -33,7 +37,7 @@ const schema = yup.object({
   message: yup.string().required('入力が必須の項目です。'),
 });
 
-const Contact = () => {
+const Contact = ({ content }: Props) => {
   const toast = useToast();
   const { send } = useMail();
   const {
@@ -150,10 +154,10 @@ const Contact = () => {
 
         <VStack w="100%">
           <Button
-            bg="green.400"
+            bg={`${content.theme}.400`}
             color="white"
             _hover={{
-              bg: 'green.500',
+              bg: `${content.theme}.500`,
             }}
             rounded="md"
             w={{ base: 'max-content' }}

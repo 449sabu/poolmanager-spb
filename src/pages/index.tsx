@@ -47,10 +47,14 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <Nav />
       <Hero metadata={poolInfo[0]} content={content} />
       <Status stat={poolInfo[0]} />
-      {process.env.NEXT_PUBLIC_SPB_TYPE === 'PoolManager' ? (
+      {process.env.SPB_TYPE === 'PoolManager' ? (
+        // {process.env.NEXT_PUBLIC_SPB_TYPE === 'PoolManager' ? (
         <Feature content={content} />
       ) : null}
-      <ContactForm />
+      {process.env.SPB_TYPE === 'PoolManager' ? (
+        // {process.env.NEXT_PUBLIC_SPB_TYPE === 'PoolManager' ? (
+        <ContactForm content={content} />
+      ) : null}
       <Footer koios={poolInfo[0]} exMetadata={exMetadata} />
     </>
   );
