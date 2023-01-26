@@ -23,7 +23,22 @@
 - オンチェーンのデータ取得には Koios 、Cardano Wallet との対話には Mesh を使用しています。  
 素晴らしいサービスを提供してくれている２つのプロジェクトに感謝いたします。
 
-- [(サンプルサイト)](https://www.cielstakepool.com/)
+
+<table>
+  <caption>作成できるサイトのサンプル</caption>
+  <thead>
+    <tr>
+      <th>実装</th> <th>ホスト先</th> <th>URL</th>
+    </tr>
+  </thead>
+  <tr>
+    <td> 最小限 </td> <td>Github Pages</td> <th>https://449sabu.github.io/poolmanager-spb</th>
+  </tr>
+  <tr>
+    <td> カスタマイズ </td> <td>Vercel</td> <th>https://cielstakepool.com</th>
+  </tr>
+</table>
+一部機能はGithub Pagesでは実装できないものもあります。
 
 ## 技術構成
 - [TypeScript](https://www.typescriptlang.org/)  
