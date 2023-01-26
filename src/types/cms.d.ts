@@ -12,6 +12,11 @@ type Content = {
     signature: string;
   };
   theme: string;
+  components: {
+    fieldId: string;
+    feature: string;
+    contact_form: string;
+  };
   description?: Array<Descriptions>;
 };
 

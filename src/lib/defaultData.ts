@@ -12,4 +12,9 @@ export const DefaultData: Content = {
     signature: '',
   },
   theme: 'blue',
+  components: {
+    fieldId: '',
+    feature: '',
+    contact_form: '',
+  },
 };
